@@ -86,7 +86,9 @@ app_license = "MIT"
 # override_doctype_class = {
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
-
+override_doctype_class = {
+ 	"Item": "customization.item.ERPNextItem"
+}
 # Document Events
 # ---------------
 # Hook on document methods and events
