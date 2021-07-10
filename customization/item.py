@@ -2,6 +2,8 @@ from erpnext.stock.doctype.item.item import Item
 from frappe.model.naming import make_autoname
 class ERPNextItem(Item):
     def autoname(self):
+        self.name = make_autoname(self.item_group[0:2].upper()+self.supplier_items[-1].supplier[-2::].upper()+".####", "", self)
+        self.item_code = self.name
         if self.item_group == "Alloy":
             self.item_name = f'{self.alloy_name } {self.hardness} {self. thickness} {self.grade} {self.item_type}'
             self.item_code = f'{self.alloy_name[0:2]}-{self.hardness[0:3]}-{self.thickness[0:3]}-{self.grade[0:3]}- {self.item_type[0:2]}'
@@ -11,4 +13,3 @@ class ERPNextItem(Item):
         if self.item_group == "Rivet":
             self.item_name = f'{self.item_type} {self.od}{self.head_diameter}/ {self.shunk_diameter}{self.length} {self.head_type}'
             self.item_code = f'{self.item_type[0:2]}-{ self.od}{self.head_diameter}/ {self.shunk_diameter}{self.length}-{self.head_type[0:3]}' 
-        self.name = make_autoname(self.item_group[0:2].upper()+self.supplier_items[-1].supplier[-2::].upper()+".#####", "", self)
