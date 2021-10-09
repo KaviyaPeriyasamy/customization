@@ -1,0 +1,14 @@
+<style>
+</style>
+{% for n in range(0, doc.no_of_labels_required) %}
+<div class="container">
+    <div style="float:left;">
+    <img src="{{ doc.custom_qr_code }}">
+    </div>
+    <div style="float:right;padding-right:65%;">
+    <p>{{doc.name}}&nbsp;&nbsp;&nbsp;&nbsp;G - {{doc.gold_weight}} &nbsp;&nbsp;D - {{doc.diamond_weight}}</p>
+    <p>{{frappe.db.get_single_value('Global Defaults', 'default_currency')}}.{{ frappe.db.get_value('Item Price', {'item_code':doc.name}, 'price_list_rate') }}
+    &nbsp;&nbsp;&nbsp;&nbsp;{{doc.diamond_quality}} - {{doc.diamond_color}}</p>
+</div>
+</div>
+{% endfor %}
